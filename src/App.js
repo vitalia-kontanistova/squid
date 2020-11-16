@@ -1,8 +1,10 @@
+import { Route } from "react-router-dom";
 import "./App.css";
-import Footer from "./components/Footer.jsx";
-import Header from "./components/Header.jsx";
-import Navbar from "./components/Navbar";
-import Profile from "./components/Profile";
+import Dialogs from "./components/dialogs/Dialogs";
+import Footer from "./components/footer/Footer.jsx";
+import Header from "./components/header/Header.jsx";
+import Navbar from "./components/navbar/Navbar";
+import Profile from "./components/profile/Profile";
 
 function App() {
 	return (
@@ -10,7 +12,10 @@ function App() {
 			<div className="wrapper">
 				<Header />
 				<Navbar />
-				<Profile />
+				<div className="content" >
+					<Route path="/dialogs" component={Dialogs} />
+					<Route path="/profile" component={Profile} />
+				</div>
 				<Footer />
 			</div>
 		</div>

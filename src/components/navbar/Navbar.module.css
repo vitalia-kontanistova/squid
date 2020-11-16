@@ -1,0 +1,9 @@
+.nav {
+  border: solid 1px; /* -- */
+  grid-area: n;
+}
+
+.list {
+}
+.item {
+}

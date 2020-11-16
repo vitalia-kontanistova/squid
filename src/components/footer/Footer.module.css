@@ -1,0 +1,9 @@
+.footer {
+  border: solid 1px; /* -- */
+  grid-area: f;
+}
+
+.bold.blue {
+  font-weight: bold;
+  color: mediumturquoise;
+}

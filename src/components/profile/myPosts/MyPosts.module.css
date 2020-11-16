@@ -1,0 +1,22 @@
+.posts {
+}
+.posts_title {
+}
+.new_post {
+}
+.textarea {
+  margin: 0 0 10px 0;
+}
+.textarea textarea {
+  width: 300px;
+}
+.btn_post {
+  margin: 0 15px 0 0;
+}
+.btn_remove {
+}
+.btn {
+  width: 100px;
+  background: salmon;
+  margin-bottom: 10px;
+}

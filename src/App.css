@@ -13,44 +13,8 @@
     "n c"
     "f f";
 }
-.header {
-  border: solid 1px; /* -- */
-  grid-area: h;
-  display: flex;
-  align-items: center;
-}
-.header__logo {
-  width: 100px;
-}
-.header__logo img {
-  width: 100%;
-}
-.header__title {
-  margin: 0 0 0 30px;
-  font-weight: bold;
-  font-size: 24px;
-}
-.nav {
-  border: solid 1px; /* -- */
-  grid-area: n;
-}
-.nav__list {
-}
-.nav__item {
-}
-.profile {
+
+.content {
   border: solid 1px; /* -- */
   grid-area: c;
-}
-
-.profile__img {
-  height: 130px;
-  overflow: hidden;
-}
-.profile__img img {
-  width: 100%;
-}
-.footer {
-  border: solid 1px; /* -- */
-  grid-area: f;
 }
