@@ -1,0 +1,31 @@
+.dialogs {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+.dialogs_items {
+  border: solid 1px;
+  margin: 5px;
+}
+
+.dialog a,
+.dialog a:hover,
+.dialog a:active,
+.dialog a:visited {
+  color: mediumturquoise;
+  text-decoration: none;
+}
+
+.dialog a:hover {
+  color: mediumblue;
+  font-weight: bold;
+}
+.dialog a.active {
+  color: blue;
+  font-weight: bold;
+}
+.messages {
+  border: solid 1px;
+  margin: 5px;
+}
+.message {
+}

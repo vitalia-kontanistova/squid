@@ -3,7 +3,24 @@
   grid-area: n;
 }
 
-.list {
-}
 .item {
+  margin: 5px 0 5px 15px;
+}
+
+.item a,
+.item a:hover,
+.item a:active,
+.item a:visited {
+  color: mediumturquoise;
+  text-decoration: none;
+}
+
+.item a:hover {
+  color: mediumblue;
+  font-weight: bold;
+}
+
+.item a.active_link {
+  color: mediumblue;
+  font-weight: bold;
 }
