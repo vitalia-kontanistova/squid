@@ -9,7 +9,8 @@ import News from "./components/news/News";
 import Profile from "./components/profile/Profile";
 import Settings from "./components/settings/Settings";
 
-function App() {
+function App(props) {
+
 	return (
 		<BrowserRouter>
 			<div className="container">
@@ -17,8 +18,9 @@ function App() {
 					<Header />
 					<Navbar />
 					<div className="content" >
-						<Route path="/profile" component={Profile} />
-						<Route /*exact*/ path="/dialogs" component={Dialogs} />
+						<Route exact path="/" render={() => <Profile profilePage={props.state.profilePage} />} />
+						<Route path="/profile" render={() => <Profile profilePage={props.state.profilePage} />} />
+						<Route /*exact*/ path="/dialogs" render={() => <Dialogs dialogPage={props.state.dialogPage} />} />
 						<Route path="/news" component={News} />
 						<Route path="/music" component={Music} />
 						<Route path="/settings" component={Settings} />

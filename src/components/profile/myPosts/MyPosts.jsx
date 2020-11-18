@@ -2,14 +2,8 @@ import React from "react";
 import css from "./MyPosts.module.css";
 import Post from "./Post/Post";
 
-const MyPosts = () => {
-  let postData = [
-    { id: 1, message: "Yo Yo Yo", likes: 5 },
-    { id: 2, message: "Mmmm...", likes: 7 },
-    { id: 3, message: "Zzzz", likes: 3 },
-  ];
-
-  let postElements = postData.map((post) => (
+const MyPosts = (props) => {
+  let postElements = props.profilePage.postData.map((post) => (
     <Post message={post.message} likes={post.likes} />
   ));
 

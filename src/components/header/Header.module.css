@@ -15,3 +15,8 @@
   font-weight: bold;
   font-size: 24px;
 }
+
+.title a {
+  text-decoration: none;
+  color: mediumturquoise;
+}
