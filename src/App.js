@@ -1,4 +1,4 @@
-import { BrowserRouter, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import "./App.css";
 import Dialogs from "./components/dialogs/Dialogs";
 import Footer from "./components/footer/Footer.jsx";
@@ -10,25 +10,30 @@ import Profile from "./components/profile/Profile";
 import Settings from "./components/settings/Settings";
 
 function App(props) {
-
 	return (
-		<BrowserRouter>
-			<div className="container">
-				<div className="wrapper">
-					<Header />
-					<Navbar />
-					<div className="content" >
-						<Route exact path="/" render={() => <Profile profilePage={props.state.profilePage} />} />
-						<Route path="/profile" render={() => <Profile profilePage={props.state.profilePage} />} />
-						<Route /*exact*/ path="/dialogs" render={() => <Dialogs dialogPage={props.state.dialogPage} />} />
-						<Route path="/news" component={News} />
-						<Route path="/music" component={Music} />
-						<Route path="/settings" component={Settings} />
-					</div>
-					<Footer />
+		<div className="container">
+			<div className="wrapper">
+				<Header />
+				<Navbar />
+				<div className="content" >
+					<Route exact path="/" render={() => <Profile
+						profilePage={props.state.profilePage}
+						addPost={props.addPost}
+						changePostTextarea={props.changePostTextarea}
+					/>} />
+					<Route path="/profile" render={() => <Profile
+						profilePage={props.state.profilePage}
+						addPost={props.addPost}
+						changePostTextarea={props.changePostTextarea}
+					/>} />
+					<Route /*exact*/ path="/dialogs" render={() => <Dialogs dialogPage={props.state.dialogPage} />} />
+					<Route path="/news" component={News} />
+					<Route path="/music" component={Music} />
+					<Route path="/settings" component={Settings} />
 				</div>
+				<Footer />
 			</div>
-		</BrowserRouter>
+		</div>
 	);
 }
 
