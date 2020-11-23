@@ -4,21 +4,16 @@ import css from "./Dialogs.module.css";
 import Message from "./message/Message";
 
 const Dialogs = (props) => {
-  let messageElements = props.dialogPage.messages.map((message) => (
+  let messageElements = props.messages.map((message) => (
     <Message message={message.message} />
   ));
-
-  let dialogElements = props.dialogPage.dialogs.map((dialog) => (
+  let dialogElements = props.dialogs.map((dialog) => (
     <DialogItem id={dialog.id} name={dialog.name} />
   ));
 
-  let textareaRef = React.createRef();
-
-  let sendBtnClick = () => {
-    let userMessage = textareaRef.current.value;
-    alert(userMessage);
-    /* O, hi Mark! */
-  };
+  let changeMessageBody = (event) =>
+    props.changeMessageBody(event.target.value);
+  let sendBtnClick = () => props.sendBtnClick();
 
   return (
     <div className={css.dialogs}>
@@ -26,7 +21,13 @@ const Dialogs = (props) => {
       <div className={css.messages}>
         {messageElements}
         <div className={css.textarea}>
-          <textarea ref={textareaRef}></textarea>
+          <textarea
+            value={props.newMessageBody}
+            placeholder="O, hi Mark!"
+            onChange={changeMessageBody}
+          >
+            {/* {props.newMessageBody} */}
+          </textarea>
         </div>
         <button className={css.btn + " " + css.clear_btn}>Clear</button>
         <button className={css.btn + " " + css.send_btn} onClick={sendBtnClick}>

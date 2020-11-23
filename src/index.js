@@ -3,17 +3,15 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import './index.css';
-import store from './redux/state';
+import store from './redux/redux_store';
 import reportWebVitals from './reportWebVitals';
 
-let treeRender = (state) => {
+let treeRender = () => {
 
 	ReactDOM.render(
 		<React.StrictMode>
 			<BrowserRouter>
-				<App state={store.state} addPost={store.addPost.bind(store)}
-					changePostTextarea={store.changePostTextarea.bind(store)}
-				/>
+				<App state={store.getState()} dispatch={store.dispatch.bind(store)} />
 			</BrowserRouter>
 		</React.StrictMode>,
 		document.getElementById('root')
@@ -21,8 +19,7 @@ let treeRender = (state) => {
 
 };
 
-treeRender(store.state);
-
+treeRender();
 store.subscribe(treeRender);
 
 reportWebVitals();
