@@ -20,15 +20,19 @@ const dialogsReducer = (state = dialogPage, action) => {
 	switch (action.type) {
 
 		case CHANGE_MESSAGE_TEXTAREA:
-			state.newMessageBody = action.body;
-			return state;
+			return {
+				...state,
+				newMessageBody: action.body
+			};
 
-		case SEND_MESSAGE:
+		case SEND_MESSAGE: {
 			let body = state.newMessageBody;
-			state.newMessageBody = "";
-			let message = { id: 4, message: body };
-			state.messages.push(message);
-			return state;
+			return {
+				...state,
+				newMessageBody: "",
+				messages: [...state.messages, { id: 4, message: body }]
+			};
+		}
 
 		default: return state;
 

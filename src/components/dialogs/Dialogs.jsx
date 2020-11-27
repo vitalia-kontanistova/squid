@@ -5,10 +5,10 @@ import Message from "./message/Message";
 
 const Dialogs = (props) => {
   let messageElements = props.messages.map((message) => (
-    <Message message={message.message} />
+    <Message message={message.message} key={message.id} />
   ));
   let dialogElements = props.dialogs.map((dialog) => (
-    <DialogItem id={dialog.id} name={dialog.name} />
+    <DialogItem id={dialog.id} name={dialog.name} key={dialog.id} />
   ));
 
   let changeMessageBody = (event) =>
@@ -25,9 +25,7 @@ const Dialogs = (props) => {
             value={props.newMessageBody}
             placeholder="O, hi Mark!"
             onChange={changeMessageBody}
-          >
-            {/* {props.newMessageBody} */}
-          </textarea>
+          ></textarea>
         </div>
         <button className={css.btn + " " + css.clear_btn}>Clear</button>
         <button className={css.btn + " " + css.send_btn} onClick={sendBtnClick}>

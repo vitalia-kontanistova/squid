@@ -29,7 +29,6 @@ let store = {
 		sidebar: {},
 	},
 
-	//	get state() { return this._state; },
 	getState() { return this._state; },
 
 	_treeRender() { },
@@ -37,14 +36,12 @@ let store = {
 	subscribe(observer) { this._treeRender = observer; },
 
 	dispatch(action) {
-		this.state.profilePage = profileReducer(this.state.profilePage, action);
-		this.state.dialogPage = dialogsReducer(this.state.dialogPage, action);
-		this.state.sidebar = sidebarReducer(this.state.sidebar, action);
+		this.getState().profilePage = profileReducer(this.getState().profilePage, action);
+		this.getState().dialogPage = dialogsReducer(this.getState().dialogPage, action);
+		this.getState().sidebar = sidebarReducer(this.getState().sidebar, action);
 
 		this._treeRender(this.state);
 	}
 };
-
-window.store = store;
 
 export default store;

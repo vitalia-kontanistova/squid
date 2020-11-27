@@ -4,7 +4,7 @@ import Post from "./Post/Post";
 
 const MyPosts = (props) => {
   let postElements = props.postData.map((post) => (
-    <Post message={post.message} likes={post.likes} />
+    <Post message={post.message} likes={post.likes} key={post.id} />
   ));
 
   let textareaChange = (event) => props.changePostBody(event.target.value);
@@ -15,7 +15,11 @@ const MyPosts = (props) => {
       <div className={css.posts_title}>my posts</div>
       <div className={css.new_post}>
         <div className={css.textarea}>
-          <textarea value={props.newPostText} onChange={textareaChange} />
+          <textarea
+            value={props.newPostText}
+            placeholder="O, hi Mark!"
+            onChange={textareaChange}
+          />
         </div>
         <button className={`${css.btn_post} ${css.btn}`} onClick={postBtnClick}>
           Post
