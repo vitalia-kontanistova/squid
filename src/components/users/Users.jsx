@@ -2,12 +2,7 @@ import React from "react";
 import css from "./Users.module.css";
 
 const Users = (props) => {
-  debugger;
-
-  //alert("props.users.length =  " + props.users.length);
-
   if (props.users.length === 0) {
-    debugger;
     props.setUsers([
       {
         id: 1,
@@ -37,7 +32,6 @@ const Users = (props) => {
         location: { city: "city 3", country: "country 3" },
       },
     ]);
-    debugger;
   }
 
   return (

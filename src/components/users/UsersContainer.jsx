@@ -11,10 +11,6 @@ let mapDispatchToProps = (dispatch) => ({
   setUsers: (users) => dispatch(setUsersAC(users)),
 });
 
-debugger;
-
 const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users);
-
-debugger;
 
 export default UsersContainer;
