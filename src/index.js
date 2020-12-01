@@ -7,7 +7,6 @@ import './index.css';
 import store from './redux/redux_store';
 import reportWebVitals from './reportWebVitals';
 
-
 ReactDOM.render(
 	<React.StrictMode>
 		<BrowserRouter>
@@ -18,6 +17,5 @@ ReactDOM.render(
 	</React.StrictMode>,
 	document.getElementById('root')
 );
-
 
 reportWebVitals();
