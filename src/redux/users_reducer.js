@@ -6,8 +6,6 @@ let usersPage = { users: [] };
 
 const usersReducer = (state = usersPage, action) => {
 
-	debugger
-
 	switch (action.type) {
 
 		case TOGGLE_FOLLOWING: {
