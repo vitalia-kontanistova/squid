@@ -29,3 +29,21 @@
   border: solid 1px;
   width: 85%;
 }
+.pages {
+  display: flex;
+  flex-wrap: wrap;
+}
+.pages span {
+  font-size: 20px;
+  padding: 0 5px;
+  font-weight: 400;
+}
+.pages span:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 22px;
+}
+.pages .selected {
+  color: blue;
+  font-weight: 800;
+}

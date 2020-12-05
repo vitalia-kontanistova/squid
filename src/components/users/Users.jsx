@@ -4,18 +4,47 @@ import userPhoto from "./../../assets/img/ava.png";
 import css from "./Users.module.css";
 
 class Users extends React.Component {
-  constructor(props) {
-    super(props);
+  componentDidMount() {
     axios
-      .get("https://social-network.samuraijs.com/api/1.0/users")
+      .get(
+        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`
+      )
       .then((responce) => {
         this.props.setUsers(responce.data.items);
+        this.props.setTotalUsers(responce.data.totalCount);
       });
   }
 
+  onPageChange = (page) => {
+    this.props.setCurrentPage(page);
+    axios
+      .get(
+        `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`
+      )
+      .then((responce) => {
+        this.props.setUsers(responce.data.items);
+      });
+  };
+
   render() {
+    let pagesCount = Math.ceil(
+      this.props.totalUsersCount / this.props.pageSize
+    );
+    let pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+      pages.push(
+        <span
+          className={i === this.props.currentPage && css.selected}
+          onClick={() => this.onPageChange(i)}
+        >
+          {i}
+        </span>
+      );
+    }
+
     return (
       <div className={css.users}>
+        <div className={css.pages}>{pages}</div>
         {this.props.users.map((user) => {
           return (
             <div key={user.id} className={css.user}>
