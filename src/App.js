@@ -6,7 +6,7 @@ import Header from "./components/header/Header.jsx";
 import Music from "./components/music/Music";
 import Navbar from "./components/navbar/Navbar";
 import News from "./components/news/News";
-import Profile from "./components/profile/Profile";
+import ProfileContainer from "./components/profile/ProfileContainer";
 import Settings from "./components/settings/Settings";
 import UsersContainer from "./components/users/UsersContainer";
 
@@ -17,7 +17,7 @@ function App(props) {
 				<Header />
 				<Navbar />
 				<div className="content" >
-					<Route path="/profile" render={() => <Profile />} />
+					<Route path="/profile" render={() => <ProfileContainer />} />
 					<Route path="/dialogs" render={() => <DialogsContainer />} />
 					<Route path="/users" render={() => <UsersContainer />} />
 					<Route path="/news" component={News} />

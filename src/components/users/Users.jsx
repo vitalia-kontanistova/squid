@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import userPhoto from "./../../assets/img/ava.png";
 import css from "./Users.module.css";
 
@@ -23,14 +24,14 @@ let Users = (props) => {
         return (
           <div key={user.id} className={css.user}>
             <div className={css.left_column}>
-              <div className={css.img}>
+              <NavLink to={"/profile/" + user.id} className={css.img}>
                 <img
                   src={
                     user.photos.small === null ? userPhoto : user.photos.small
                   }
                   alt="user img"
                 />
-              </div>
+              </NavLink>
               <div>
                 <button
                   className={css.follow_btn}

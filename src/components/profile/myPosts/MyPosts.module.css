@@ -1,6 +1,11 @@
 .posts {
+  border: solid 1px;
+  margin: 10px 0;
 }
 .posts_title {
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 5px 0 10px 0;
 }
 .new_post {
 }

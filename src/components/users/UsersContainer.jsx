@@ -3,11 +3,11 @@ import React from "react";
 import { connect } from "react-redux";
 import Preloader from "../preloader/Preloader";
 import {
-  followToggleAC,
-  isFetchingToggleAC,
-  setCurrentPageAC,
-  setTotalUsersAC,
-  setUsersAC,
+  followToggle,
+  isFetchingToggle,
+  setCurrentPage,
+  setTotalUsers,
+  setUsers,
 } from "./../../redux/users_reducer";
 import Users from "./Users";
 
@@ -37,7 +37,7 @@ class UsersContainer extends React.Component {
   };
 
   render() {
-    let jsx = (
+    return (
       <>
         {this.props.isFetching ? (
           <Preloader />
@@ -53,8 +53,6 @@ class UsersContainer extends React.Component {
         )}
       </>
     );
-
-    return jsx;
   }
 }
 
@@ -65,12 +63,11 @@ let mapStateToProps = (state) => ({
   pageSize: state.usersPage.pageSize,
   isFetching: state.usersPage.isFetching,
 });
-let mapDispatchToProps = (dispatch) => ({
-  followToggle: (userId) => dispatch(followToggleAC(userId)),
-  setUsers: (users) => dispatch(setUsersAC(users)),
-  setTotalUsers: (totalUsers) => dispatch(setTotalUsersAC(totalUsers)),
-  setCurrentPage: (page) => dispatch(setCurrentPageAC(page)),
-  isFetchingToggle: () => dispatch(isFetchingToggleAC()),
-});
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+export default connect(mapStateToProps, {
+  followToggle,
+  setUsers,
+  setTotalUsers,
+  setCurrentPage,
+  isFetchingToggle,
+})(UsersContainer);

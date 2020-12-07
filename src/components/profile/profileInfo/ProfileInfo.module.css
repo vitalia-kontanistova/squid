@@ -1,12 +1,47 @@
-.profile_INFO {
+.profile_info {
+  border: solid 1px;
 }
-.img {
-  height: 130px;
-  overflow: hidden;
+
+.user_info {
+  margin: 10px 0;
 }
-.img img {
+
+.row {
+  display: flex;
+}
+.ava {
+  width: 150px;
+
+  margin: 0 30px 0 0;
+}
+.ava img {
   width: 100%;
 }
-.user_info {
-  color: red;
+.info {
+}
+.name {
+  font-weight: bold;
+  font-size: 20px;
+}
+.status {
+  margin: 0 0 20px 0;
+  font-weight: 300;
+}
+.job {
+  display: flex;
+  align-items: bottom;
+  flex-wrap: wrap;
+}
+.job img {
+  width: 18px;
+  margin: 0 0 0 10px;
+}
+.job div {
+  width: 100%;
+}
+.contacts {
+  display: flex;
+}
+.contacts span {
+  padding: 0 5px 0 0;
 }
