@@ -1,7 +1,6 @@
 const ADD_POST = "ADD_POST";
 const CHANGE_POST_TEXTAREA = "CHANGE_POST_TEXTAREA";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
-const SET_IS_FETCHING_TRUE = "SET_IS_FETCHING_TRUE";
 
 let profilePage = {
 	postData: [
@@ -11,7 +10,6 @@ let profilePage = {
 	],
 	newPostText: "",
 	profile: null,
-	isFetching: false,
 };
 
 const profileReducer = (state = profilePage, action) => {
@@ -28,8 +26,6 @@ const profileReducer = (state = profilePage, action) => {
 			};
 		case SET_USER_PROFILE:
 			return { ...state, profile: action.profile };
-		case SET_IS_FETCHING_TRUE:
-			return { ...state, isFetching: true };
 		default: return state;
 	}
 }
@@ -37,6 +33,5 @@ const profileReducer = (state = profilePage, action) => {
 export let setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile });
 export let changePostBodyCreator = (userPost) => ({ type: CHANGE_POST_TEXTAREA, userPost: userPost });
 export let addPostCreator = () => ({ type: ADD_POST });
-export let setIsFetchingTrue = () => ({ type: SET_IS_FETCHING_TRUE });
 
 export default profileReducer;
