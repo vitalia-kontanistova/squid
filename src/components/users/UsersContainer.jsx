@@ -1,9 +1,10 @@
-import * as axios from "axios";
 import React from "react";
 import { connect } from "react-redux";
+import { usersAPI } from "../../api/api";
 import Preloader from "../preloader/Preloader";
 import {
-  followToggle,
+  follow,
+  unfollow,
   isFetchingToggle,
   setCurrentPage,
   setTotalUsers,
@@ -13,27 +14,21 @@ import Users from "./Users";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`
-      )
+    usersAPI
+      .getUsers(this.props.currentPage, this.props.pageSize)
       .then((responce) => {
-        this.props.setUsers(responce.data.items);
-        this.props.setTotalUsers(responce.data.totalCount);
+        this.props.setUsers(responce.items);
+        this.props.setTotalUsers(responce.totalCount);
       });
   }
 
   onPageChange = (page) => {
     this.props.setCurrentPage(page);
     this.props.isFetchingToggle();
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`
-      )
-      .then((responce) => {
-        this.props.isFetchingToggle();
-        this.props.setUsers(responce.data.items);
-      });
+    usersAPI.getUsers(page, this.props.pageSize).then((responce) => {
+      this.props.isFetchingToggle();
+      this.props.setUsers(responce.items);
+    });
   };
 
   render() {
@@ -48,7 +43,8 @@ class UsersContainer extends React.Component {
             currentPage={this.props.currentPage}
             onPageChange={this.onPageChange}
             users={this.props.users}
-            followToggle={this.props.followToggle}
+            follow={this.props.follow}
+            unfollow={this.props.unfollow}
           />
         )}
       </>
@@ -65,7 +61,8 @@ let mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  followToggle,
+  follow,
+  unfollow,
   setUsers,
   setTotalUsers,
   setCurrentPage,

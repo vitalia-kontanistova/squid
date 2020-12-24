@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { usersAPI } from "../../api/api";
 import userPhoto from "./../../assets/img/ava.png";
 import css from "./Users.module.css";
 
@@ -33,21 +34,36 @@ let Users = (props) => {
                 />
               </NavLink>
               <div>
-                <button
-                  className={css.follow_btn}
-                  onClick={() => {
-                    props.followToggle(user.id);
-                  }}
-                >
-                  {user.followed ? "Unfollow" : "Follow"}
-                </button>
+                {user.followed ? (
+                  <button
+                    onClick={() => {
+                      usersAPI.unfollow(user.id).then((response) => {
+                        if (response.resultCode === 0) {
+                          props.unfollow(user.id);
+                        }
+                      });
+                    }}
+                  >
+                    Unfollow
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => {
+                      usersAPI.follow(user.id).then((response) => {
+                        if (response.resultCode === 0) {
+                          props.follow(user.id);
+                        }
+                      });
+                    }}
+                  >
+                    Follow
+                  </button>
+                )}
               </div>
             </div>
-
             <div className={css.right_column}>
               <div>{user.name}</div>
-              <div>{"user.location.country, user.location.sity"}</div>
-              <div>{user.status}</div>
+              <div>Status: {user.status}</div>
             </div>
           </div>
         );
