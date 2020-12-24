@@ -1,8 +1,5 @@
 import { connect } from "react-redux";
-import {
-  changeMessageBodyCreator,
-  sendMessageCreator,
-} from "../../redux/dialogs_reducer";
+import { changeMessageBody, sendBtnClick } from "../../redux/dialogs_reducer";
 import Dialogs from "./Dialogs";
 
 let mapStateToProps = (state) => {
@@ -13,14 +10,8 @@ let mapStateToProps = (state) => {
   };
 };
 
-let mapDispatchToProps = (dispatch) => ({
-  changeMessageBody: (body) => {
-    return dispatch(changeMessageBodyCreator(body));
-  },
-  sendBtnClick: () => {
-    return dispatch(sendMessageCreator());
-  },
-});
-
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+const DialogsContainer = connect(mapStateToProps, {
+  changeMessageBody,
+  sendBtnClick,
+})(Dialogs);
 export default DialogsContainer;
