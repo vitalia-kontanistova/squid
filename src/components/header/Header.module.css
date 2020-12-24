@@ -11,7 +11,7 @@
   width: 100%;
 }
 .title {
-  margin: 0 0 0 30px;
+  margin: 0 30px;
   font-weight: bold;
   font-size: 24px;
 }
@@ -19,4 +19,14 @@
 .title a {
   text-decoration: none;
   color: mediumturquoise;
+}
+.logIn {
+  width: 750px;
+  text-align: right;
+  font-weight: 600;
+}
+.logIn a,
+.logIn a:visited {
+  text-decoration: none;
+  color: blue;
 }
