@@ -52,13 +52,6 @@ let mapStateToProps = (state) => ({
   toggleFollowingProgress: state.usersPage.toggleFollowingProgress,
 });
 
-// export default connect(mapStateToProps, {
-//   follow: followThunkCreator,
-//   unfollow: unfollowThunkCreator,
-//   setCurrentPage,
-//   getUsers: getUsersThunkCreator,
-// })(UsersContainer);
-
 export default compose(
   connect(mapStateToProps, {
     follow: followThunkCreator,

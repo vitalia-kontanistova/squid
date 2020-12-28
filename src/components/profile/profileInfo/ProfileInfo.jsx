@@ -4,6 +4,7 @@ import thumbDown from "./../../../assets/img/tD.png";
 import thumbUp from "./../../../assets/img/tU.png";
 import ava from "./../../../assets/img/ava.png";
 import css from "./ProfileInfo.module.css";
+import ProfileStatus from "../profileStatus/ProfileStatus";
 
 const ProfileInfo = (props) => {
   if (!props.profile) {
@@ -18,7 +19,8 @@ const ProfileInfo = (props) => {
             </div>
             <div className={css.info}>
               <div className={css.name}>{props.profile.fullName}</div>
-              <div className={css.status}> {props.profile.aboutMe}</div>
+              <ProfileStatus status="O, hi Mark!" />
+              {/* <ProfileStatus status={props.profile.aboutMe} /> */}
               <div className={css.job}>
                 <div>
                   Looking for a job:

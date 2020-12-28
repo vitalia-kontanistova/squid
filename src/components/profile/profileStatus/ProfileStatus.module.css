@@ -1,0 +1,9 @@
+.profile_info {
+  border: solid 1px;
+}
+
+.status {
+  margin: 0 0 20px 0;
+  font-weight: 300;
+  border: solid 3px;
+}
