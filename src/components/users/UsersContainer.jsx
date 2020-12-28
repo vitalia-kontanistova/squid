@@ -1,5 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
+import { compose } from "redux";
+import withAuthRedirect from "../../hoc/WithAuthRedirect";
 import Preloader from "../preloader/Preloader";
 import {
   setCurrentPage,
@@ -50,9 +52,19 @@ let mapStateToProps = (state) => ({
   toggleFollowingProgress: state.usersPage.toggleFollowingProgress,
 });
 
-export default connect(mapStateToProps, {
-  follow: followThunkCreator,
-  unfollow: unfollowThunkCreator,
-  setCurrentPage,
-  getUsers: getUsersThunkCreator,
-})(UsersContainer);
+// export default connect(mapStateToProps, {
+//   follow: followThunkCreator,
+//   unfollow: unfollowThunkCreator,
+//   setCurrentPage,
+//   getUsers: getUsersThunkCreator,
+// })(UsersContainer);
+
+export default compose(
+  connect(mapStateToProps, {
+    follow: followThunkCreator,
+    unfollow: unfollowThunkCreator,
+    setCurrentPage,
+    getUsers: getUsersThunkCreator,
+  }),
+  withAuthRedirect
+)(UsersContainer);

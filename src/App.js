@@ -10,6 +10,7 @@ import ProfileContainer from "./components/profile/ProfileContainer";
 import Settings from "./components/settings/Settings";
 import UsersContainer from "./components/users/UsersContainer";
 import Authorisation from "./components/authorisation/Authorisation";
+import LogIn from "./components/logIn/LogIn";
 
 function App(props) {
   return (
@@ -25,6 +26,7 @@ function App(props) {
           <Route path="/music" component={Music} />
           <Route path="/settings" component={Settings} />
           <Route path="/auth" component={Authorisation} />
+          <Route path="/logIn" component={LogIn} />
         </div>
         <Footer />
       </div>

@@ -28,10 +28,10 @@ const Dialogs = (props) => {
             onChange={changeMessageBody}
           ></textarea>
         </div>
-        <button className={css.btn + " " + css.clear_btn}>Clear</button>
         <button className={css.btn + " " + css.send_btn} onClick={sendBtnClick}>
           Send
         </button>
+        <button className={css.btn + " " + css.clear_btn}>Clear</button>
       </div>
     </div>
   );
