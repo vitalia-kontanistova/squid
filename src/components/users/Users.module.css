@@ -41,7 +41,8 @@ button {
 .pages span:hover {
   cursor: pointer;
   text-decoration: underline;
-  font-size: 22px;
+  color: blue;
+  font-weight: 500;
 }
 .pages .selected {
   color: blue;
