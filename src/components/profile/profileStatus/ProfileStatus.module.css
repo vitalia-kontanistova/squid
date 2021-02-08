@@ -4,6 +4,19 @@
 
 .status {
   margin: 0 0 20px 0;
-  font-weight: 300;
-  border: solid 3px;
+  font-weight: 500;
+  min-width: 150px;
+  height: 50px;
+  border: cadetblue 1px solid;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  white-space: nowrap;
+}
+.status input {
+  border: 1px solid;
+  font-weight: 500;
+  min-width: 148px;
+  font-size: 20px;
+  white-space: nowrap;
 }

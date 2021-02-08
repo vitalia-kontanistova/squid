@@ -1,40 +1,81 @@
+import { Field, Form, Formik } from "formik";
 import React from "react";
 import DialogItem from "./dialogItem/DialogItem";
 import css from "./Dialogs.module.css";
 import Message from "./message/Message";
 
 const Dialogs = (props) => {
-  let messageElements = props.messages.map((message) => (
-    <Message message={message.message} key={message.id} />
+  let messageElements = props.messages.map((mess) => (
+    <Message message={mess.message} key={mess.id} />
   ));
 
   let dialogElements = props.dialogs.map((dialog) => (
     <DialogItem id={dialog.id} name={dialog.name} key={dialog.id} />
   ));
 
-  let changeMessageBody = (event) =>
-    props.changeMessageBody(event.target.value);
-  let sendBtnClick = () => props.sendBtnClick();
+  const sendMessage = (message) => {
+    props.sendMessage(message);
+  };
 
   return (
     <div className={css.dialogs}>
-      <div className={css.dialogs_items}>{dialogElements}</div>
+      <div className={css.dialogsItems}>{dialogElements}</div>
+
       <div className={css.messages}>
         {messageElements}
-        <div className={css.textarea}>
-          <textarea
-            value={props.newMessageBody}
-            placeholder="O, hi Mark!"
-            onChange={changeMessageBody}
-          ></textarea>
-        </div>
-        <button className={css.btn + " " + css.send_btn} onClick={sendBtnClick}>
-          Send
-        </button>
-        <button className={css.btn + " " + css.clear_btn}>Clear</button>
+        <SendMessageForm onSubmit={sendMessage} />
       </div>
     </div>
   );
 };
+
+class SendMessageForm extends React.Component {
+  render() {
+    return (
+      <Formik
+        initialValues={{ newMessage: "" }}
+        onSubmit={(data, { setSubmitting, resetForm }) => {
+          setSubmitting(true);
+          // запрос на сервер
+          this.props.onSubmit(data.newMessage);
+          setSubmitting(false);
+          resetForm();
+        }}
+      >
+        {({ values, handleSubmit, handleReset, isSubmitting }) => {
+          return (
+            <Form className={css.form} onSubmit={handleSubmit}>
+              <Field
+                className={css.newMessage}
+                name="newMessage"
+                placeholder="O, hi Mark!"
+                as="textarea"
+              />
+
+              <button
+                name="submit"
+                type="submit"
+                disabled={isSubmitting}
+                className={css.btn}
+              >
+                Send
+              </button>
+              <button
+                name="reset"
+                type="reset"
+                className={css.btn}
+                onClick={handleReset}
+              >
+                Clear
+              </button>
+
+              <pre>{JSON.stringify(values)}</pre>
+            </Form>
+          );
+        }}
+      </Formik>
+    );
+  }
+}
 
 export default Dialogs;

@@ -2,26 +2,22 @@
   border: solid 1px;
   margin: 10px 0;
 }
-.posts_title {
+.postsTitle {
   font-weight: bold;
   text-transform: uppercase;
   margin: 5px 0 10px 0;
 }
-.new_post {
+.form {
 }
-.textarea {
-  margin: 0 0 10px 0;
-}
-.textarea textarea {
+.newPost {
+  display: block;
   width: 300px;
-}
-.btn_post {
-  margin: 0 15px 0 0;
-}
-.btn_remove {
+  height: 50px;
+  border: solid 1px;
+  margin: 10px 0;
 }
 .btn {
   width: 100px;
-  background: sandybrown;
+  background: lightseagreen;
   margin-bottom: 10px;
 }

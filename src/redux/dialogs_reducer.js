@@ -1,5 +1,4 @@
 const SEND_MESSAGE = "SEND_MESSAGE";
-const CHANGE_MESSAGE = "CHANGE_MESSAGE";
 
 let dialogPage = {
   messages: [
@@ -13,32 +12,19 @@ let dialogPage = {
     { id: 3, name: "User 3" },
     { id: 4, name: "User 4" },
   ],
-  newMessageBody: "",
 };
 
 const dialogsReducer = (state = dialogPage, action) => {
   switch (action.type) {
-    case CHANGE_MESSAGE:
-      return {
-        ...state,
-        newMessageBody: action.body,
-      };
-
-    case SEND_MESSAGE: {
-      let body = state.newMessageBody;
-      return {
-        ...state,
-        newMessageBody: "",
-        messages: [...state.messages, { id: 4, message: body }],
-      };
-    }
-
+    case SEND_MESSAGE:
+      let id = state.messages.length + 1;
+      let message = action.message;
+      return { ...state, messages: [...state.messages, { id, message }] };
     default:
       return state;
   }
 };
 
-export let changeMessageBody = (body) => ({ type: CHANGE_MESSAGE, body: body });
-export let sendBtnClick = () => ({ type: SEND_MESSAGE });
+export let sendMessage = (message) => ({ type: SEND_MESSAGE, message });
 
 export default dialogsReducer;

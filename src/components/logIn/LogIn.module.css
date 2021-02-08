@@ -1,0 +1,25 @@
+.title {
+  font-size: 25px;
+  font-weight: 400;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+}
+.form input {
+  border: solid 1px;
+  margin: 5px 0;
+  text-align: center;
+  max-width: 200px;
+}
+.btn {
+  height: 25px;
+  background: mediumturquoise;
+}
+.btn:disabled {
+  background: gray;
+}
+.error {
+  color: red;
+  font-weight: 400;
+}

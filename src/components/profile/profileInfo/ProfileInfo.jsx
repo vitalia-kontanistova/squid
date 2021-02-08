@@ -19,8 +19,7 @@ const ProfileInfo = (props) => {
             </div>
             <div className={css.info}>
               <div className={css.name}>{props.profile.fullName}</div>
-              <ProfileStatus status="O, hi Mark!" />
-              {/* <ProfileStatus status={props.profile.aboutMe} /> */}
+              <ProfileStatus {...props} />
               <div className={css.job}>
                 <div>
                   Looking for a job:

@@ -4,15 +4,26 @@ import css from "./ProfileStatus.module.css";
 class ProfileStatus extends React.Component {
   state = {
     editMode: false,
+    status: this.props.status,
   };
 
-  activateEditMode() {
-    this.setState({ editMode: true });
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.status !== this.props.status) {
+      this.setState({ status: this.props.status });
+    }
   }
 
-  deactivateEditMode() {
+  activateEditMode = () => {
+    this.setState({ editMode: true });
+  };
+
+  deactivateEditMode = () => {
+    this.props.updateStatus(this.state.status);
     this.setState({ editMode: false });
-  }
+  };
+  onStatusChange = (e) => {
+    this.setState({ status: e.currentTarget.value });
+  };
 
   render() {
     return (
@@ -20,14 +31,16 @@ class ProfileStatus extends React.Component {
         {this.state.editMode ? (
           <div className={css.status}>
             <input
-              onBlur={this.deactivateEditMode.bind(this)}
+              onBlur={this.deactivateEditMode}
+              onChange={this.onStatusChange}
               autoFocus
-              value={this.props.status}
+              value={this.state.status}
             />
           </div>
         ) : (
           <div
-            onDoubleClick={this.activateEditMode.bind(this)}
+            onClick={this.activateEditMode}
+            // onDoubleClick={this.activateEditMode} //при f12 не работает
             className={css.status}
           >
             {this.props.status}

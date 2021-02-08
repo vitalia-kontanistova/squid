@@ -1,8 +1,8 @@
 import { profileAPI } from "../api/api";
 
-const ADD_POST = "ADD_POST";
-const CHANGE_POST = "CHANGE_POST";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
+const SET_STATUS = "SET_STATUS";
+const SEND_POST = "SEND_POST";
 
 let profilePage = {
   postData: [
@@ -10,41 +10,48 @@ let profilePage = {
     { id: 2, message: "Mmmm...", likes: 7 },
     { id: 3, message: "Zzzz", likes: 3 },
   ],
-  newPostText: "",
   profile: null,
+  status: "",
 };
 
 const profileReducer = (state = profilePage, action) => {
   switch (action.type) {
-    case CHANGE_POST:
-      return { ...state, newPostText: action.userPost };
-    case ADD_POST:
-      let message = state.newPostText;
-      return {
-        ...state,
-        postData: [...state.postData, { id: 4, message: message, likes: 0 }],
-        newPostText: "",
-      };
     case SET_USER_PROFILE:
       return { ...state, profile: action.profile };
+    case SET_STATUS:
+      return { ...state, status: action.status };
+    case SEND_POST:
+      let id = state.postData.length + 1;
+      let message = action.post;
+      let likes = Math.round(Math.random() * 10);
+      return {
+        ...state,
+        postData: [...state.postData, { id, message, likes }],
+      };
     default:
       return state;
   }
 };
 
+export let setStatus = (status) => ({ type: SET_STATUS, status });
 export let setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile });
-export let changePost = (userPost) => ({
-  type: CHANGE_POST,
-  userPost: userPost,
-});
-export let addPost = () => ({ type: ADD_POST });
-
+export const sendPost = (post) => ({ type: SEND_POST, post });
 export const setUserProfileThunkCreator = (userId) => {
   return (dispatch) => {
     profileAPI.setUserProfile(userId).then((response) => {
       dispatch(setUserProfile(response));
     });
   };
+};
+export const getStatusThunkCreator = (userId) => (dispatch) => {
+  profileAPI
+    .getStatus(userId)
+    .then((response) => dispatch(setStatus(response)));
+};
+export const updateStatusThunkCreator = (status) => (dispatch) => {
+  profileAPI.updateStatus(status).then((response) => {
+    if (response.resultCode === 0) dispatch(setStatus(status));
+  });
 };
 
 export default profileReducer;
