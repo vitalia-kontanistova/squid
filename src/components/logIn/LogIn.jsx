@@ -2,15 +2,21 @@ import React from "react";
 import css from "./LogIn.module.css";
 import { Formik, Field, Form, useField } from "formik";
 import * as Yup from "yup";
+import { Redirect } from "react-router-dom";
 
 const LogIn = (props) => {
   const onSubmit = (data) => {
-    console.log(data);
+    props.login(data.login, data.password, data.rememberMe);
   };
+
+  if (props.isAuth) {
+    return <Redirect to="/profile" />;
+  }
+
   return (
     <div>
       <h1 className={css.title}>LogIn</h1>
-      <LogInForm onSubmit={onSubmit} />
+      <LogInForm onSubmit={onSubmit} {...props} />
     </div>
   );
 };
@@ -22,7 +28,6 @@ export class LogInForm extends React.Component {
         initialValues={{ login: "", password: "", rememberMe: false }}
         onSubmit={(data, { setSubmitting, resetForm }) => {
           setSubmitting(true);
-          // запрос на сервер
           this.props.onSubmit(data);
           setSubmitting(false);
           resetForm();
@@ -52,6 +57,14 @@ export class LogInForm extends React.Component {
                 type="checkbox"
                 label="Remember me"
               />
+
+              {this.props.hasServerLoginError ? (
+                <div className={css.error}>
+                  {this.props.serverLoginErrorMessage}
+                </div>
+              ) : (
+                ""
+              )}
               <button
                 name="submit"
                 type="submit"
