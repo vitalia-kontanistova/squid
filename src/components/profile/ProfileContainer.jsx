@@ -8,6 +8,11 @@ import {
   getStatusThunkCreator,
   updateStatusThunkCreator,
 } from "../../redux/profile_reducer";
+import {
+  getProfile,
+  getStatus,
+  getUserId,
+} from "../../redux/profile_selectors";
 import Profile from "./Profile";
 
 class ProfileContainer extends React.Component {
@@ -37,10 +42,16 @@ class ProfileContainer extends React.Component {
 }
 
 let mapStateToProps = (state) => ({
-  profile: state.profilePage.profile,
-  userId: state.auth.userId,
-  status: state.profilePage.status,
+  profile: getProfile(state),
+  userId: getUserId(state),
+  status: getStatus(state),
 });
+
+// let mapStateToProps = (state) => ({
+//   profile: state.profilePage.profile,
+//   userId: state.auth.userId,
+//   status: state.profilePage.status,
+// });
 
 export default compose(
   connect(mapStateToProps, {

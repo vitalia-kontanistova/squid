@@ -1,7 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import withAuthRedirect from "../../hoc/WithAuthRedirect";
+import {
+  getCurrentPage,
+  getIsFetching,
+  getPageSize,
+  getToggleFollowingProgress,
+  getTotalUsersCount,
+  getUsers,
+} from "../../redux/users_selectors";
 import Preloader from "../preloader/Preloader";
 import {
   setCurrentPage,
@@ -43,13 +50,22 @@ class UsersContainer extends React.Component {
   }
 }
 
+// let mapStateToProps = (state) => ({
+//   users: state.usersPage.users,
+//   currentPage: state.usersPage.currentPage,
+//   totalUsersCount: state.usersPage.totalUsersCount,
+//   pageSize: state.usersPage.pageSize,
+//   isFetching: state.usersPage.isFetching,
+//   toggleFollowingProgress: state.usersPage.toggleFollowingProgress,
+// });
+
 let mapStateToProps = (state) => ({
-  users: state.usersPage.users,
-  currentPage: state.usersPage.currentPage,
-  totalUsersCount: state.usersPage.totalUsersCount,
-  pageSize: state.usersPage.pageSize,
-  isFetching: state.usersPage.isFetching,
-  toggleFollowingProgress: state.usersPage.toggleFollowingProgress,
+  users: getUsers(state),
+  currentPage: getCurrentPage(state),
+  totalUsersCount: getTotalUsersCount(state),
+  pageSize: getPageSize(state),
+  isFetching: getIsFetching(state),
+  toggleFollowingProgress: getToggleFollowingProgress(state),
 });
 
 export default compose(
@@ -59,5 +75,4 @@ export default compose(
     setCurrentPage,
     getUsers: getUsersThunkCreator,
   })
-  // withAuthRedirect
 )(UsersContainer);
