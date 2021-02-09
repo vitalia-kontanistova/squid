@@ -6,6 +6,4 @@ let mapStateToProps = (state) => ({
   postData: state.profilePage.postData,
 });
 
-const MyPostsContainer = connect(mapStateToProps, { sendPost })(MyPosts);
-
-export default MyPostsContainer;
+export default connect(mapStateToProps, { sendPost })(MyPosts);
