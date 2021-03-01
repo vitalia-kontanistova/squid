@@ -25,36 +25,13 @@ let Users = (props) => {
           <div key={user.id} className={css.user}>
             <div className={css.left_column}>
               <NavLink to={"/profile/" + user.id} className={css.img}>
-                <img
-                  src={
-                    user.photos.small === null ? userPhoto : user.photos.small
-                  }
-                  alt="user img"
-                />
+                <img src={user.photos.small === null ? userPhoto : user.photos.small} alt="user img"/>
               </NavLink>
               <div>
                 {user.followed ? (
-                  <button
-                    disabled={props.toggleFollowingProgress.some(
-                      (id) => id === user.id
-                    )}
-                    onClick={() => {
-                      props.unfollow(user.id);
-                    }}
-                  >
-                    Unfollow
-                  </button>
+                  <button disabled={props.toggleFollowingProgress.some((id) => id === user.id)}onClick={() => {props.unfollow(user.id);}}>Unfollow</button>
                 ) : (
-                  <button
-                    disabled={props.toggleFollowingProgress.some(
-                      (id) => id === user.id
-                    )}
-                    onClick={() => {
-                      props.follow(user.id);
-                    }}
-                  >
-                    Follow
-                  </button>
+                  <button disabled={props.toggleFollowingProgress.some((id) => id === user.id)}onClick={() => {props.follow(user.id);}}>Follow</button>
                 )}
               </div>
             </div>

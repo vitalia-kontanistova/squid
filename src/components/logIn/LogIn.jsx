@@ -26,16 +26,13 @@ export class LogInForm extends React.Component {
     return (
       <Formik
         initialValues={{ login: "", password: "", rememberMe: false }}
-        onSubmit={(data, { setSubmitting, resetForm }) => {
+        onSubmit={(data, { setSubmitting, resetForm }) => { 
           setSubmitting(true);
           this.props.onSubmit(data);
           setSubmitting(false);
           resetForm();
         }}
-        validationSchema={Yup.object({
-          login: Yup.string().min(2).required(),
-          password: Yup.string().min(2).required(),
-        })}
+        validationSchema={Yup.object({ login: Yup.string().min(2).required(), password: Yup.string().min(2).required(), })}
       >
         {({ values, handleSubmit, isSubmitting }) => {
           return (
